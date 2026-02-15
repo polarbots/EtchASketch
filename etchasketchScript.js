@@ -6,6 +6,19 @@ const container = document.querySelector('#container');
 function addSquareDivToRow(row) {
     const squareDiv = document.createElement('div');
     squareDiv.classList.add('square');
+
+    // Add event listener to change background color on mouseenter
+    squareDiv.addEventListener("mouseenter", (event) => {
+        event.target.style.backgroundColor = 'coral';
+    });
+
+    // Revert to original on mouseleave with a small delay for a trailing effect
+    squareDiv.addEventListener("mouseleave", (event) => {
+        let timerId = setTimeout(function() {
+            event.target.style.backgroundColor = '';
+        }, 200);
+        
+    });
     row.appendChild(squareDiv);
 }
 
@@ -18,4 +31,3 @@ for (let i = 0; i < 16; i++) {
     };
     container.appendChild(rowDiv);
 }
-
