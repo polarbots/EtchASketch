@@ -1,26 +1,8 @@
-
 // Select container div to assign other divs to later
 const container = document.querySelector('#container');
 
 // Set default value to numSquarePerSide
 let numSquarePerSide = 16
-
-createGrid(numSquarePerSide);
-
-// Set event listener on button click to prompt user to enter number for numSquarePerSide
-const numSquareButton = document.querySelector('button');
-numSquareButton.addEventListener("click", () => {
-    // Cast to number, then round to get an integer
-    let userInput = Math.round(Number(prompt(`How many squares do you want per side?\nThis value can be any integer from 1 to 99 and defaults to ${numSquarePerSide}.`)));
-    console.log(userInput);
-
-    // Verify input is an int from 1-99. If so, assign to numSquarePerSide
-    if (userInput >= 1 && userInput <= 99) {
-        numSquarePerSide = userInput;
-    }
-
-    createGrid(numSquarePerSide);
-});
 
 // Add a div of class square as child of a div with class row
 function addSquareDivToRow(row) {
@@ -52,4 +34,27 @@ function createGrid(numSquarePerSide) {
     };
     container.appendChild(rowDiv);
     };
-}
+};
+
+// Create default 16x16 grid
+createGrid(numSquarePerSide);
+
+// Set event listener on button click to prompt user to enter number for numSquarePerSide
+const numSquareButton = document.querySelector('button');
+numSquareButton.addEventListener("click", () => {
+    // Cast to number, then round to get an integer
+    let userInput = Math.round(Number(prompt(`How many squares do you want per side?\nThis value can be any integer from 1 to 99 and defaults to ${numSquarePerSide}.`)));
+
+    // Verify input is an int from 1-99. If so, assign to numSquarePerSide
+    if (userInput >= 1 && userInput <= 99) {
+        numSquarePerSide = userInput;
+    } else {
+        numSquarePerSide = 16;
+    };
+
+    // Need to first clear the existing grid
+    container.replaceChildren();
+
+    createGrid(numSquarePerSide);
+});
+
