@@ -11,7 +11,14 @@ function addSquareDivToRow(row) {
 
     // Add event listener to change background color on mouseenter
     squareDiv.addEventListener("mouseenter", (event) => {
-        event.target.style.backgroundColor = 'coral';
+        // Code for random colors
+        const r = Math.round(Math.random() * 255);
+        const g = Math.round(Math.random() * 255);
+        const b = Math.round(Math.random() * 255);
+
+        event.target.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+
+        // event.target.style.backgroundColor = 'coral';
     });
 
     // Revert to original on mouseleave with a small delay for a trailing effect
@@ -19,10 +26,10 @@ function addSquareDivToRow(row) {
         let timerId = setTimeout(function() {
             event.target.style.backgroundColor = '';
         }, 200);
-        
     });
+
     row.appendChild(squareDiv);
-}
+};
 
 // Create a grid of size _x_ as determined by user input
 function createGrid(numSquarePerSide) {
